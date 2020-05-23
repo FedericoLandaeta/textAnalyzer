@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Main{
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("C:\\Users\\Vanessa\\Documents\\eclipse\\TheRaven.txt");
+        File file = new File("FileAddress");
         Scanner scanner = new Scanner(file);
         Map<String,Integer> map = new HashMap<String, Integer>(); 
         while (scanner.hasNext())
