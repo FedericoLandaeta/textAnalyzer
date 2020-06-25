@@ -42,16 +42,18 @@ public class ravenWordCount extends Application implements EventHandler<ActionEv
 	Stage window;
 	Scene scene1, scene2;
 	Label label2 = new Label();
-	static String words;
+	//static String words;
 
 
 	public static void main(String[] args) {
-		raven();
+
 		launch(args);
 	}
 
 	public void start(Stage primaryStage) throws Exception {
-		
+		Reader reader = new Reader();
+		reader.raven();
+		String words = reader.raven();
 		primaryStage.setTitle("Word Count for The Raven by Edgar Allan Poe ");
 		button = new Button();
 		button.setText("Analyze");
@@ -75,62 +77,7 @@ public class ravenWordCount extends Application implements EventHandler<ActionEv
 		primaryStage.setScene(scene1);
 		primaryStage.show();
 	}
-		
-		public static void raven() {
-				try {
-			    	@SuppressWarnings("resource")
-					String word = new Scanner(new URL("https://www.gutenberg.org/files/1065/1065-h/1065-h.htm").openStream(), "UTF-8").useDelimiter("\\A").next();
-			        Map<String,Integer> map = new HashMap<String, Integer>(); 
-			    	String delStr;
-			    	String delStr2;
-			 
-			        delStr = word.substring(0, 1924);
-			        delStr2 = word.substring(10899,30163);
-			        word = word.replace(delStr, "");
-			        word = word.replace(delStr2, "");
-			        word = word.replaceAll("<[^>]*>", "");
-			        word = word.replaceAll("&mdash", "");
-			        word = word.replaceAll("\"", "");
-			        word = word.replaceAll("'", "");
-			        word = word.replaceAll(",", "");
-			        word = word.replaceAll("\\.", "");
-			        word = word.replaceAll("!", "");
-			        word = word.replaceAll(";", " ");
-			        word = word.replaceAll("\\s+", " ").trim();
-			        word = word.toLowerCase();
-			        
-			        String [] arr = word.split(" ");
-			        	for (int i= 0; i<arr.length; i++) {
-			        		if(map.containsKey(arr[i]) == false) 
-				                map.put(arr[i],1);
-				            else 
-				            {
-				                int count = (int)(map.get(arr[i])); 
-				                map.remove(arr[i]); 
-				                map.put(arr[i],count+1);
-				            }	
-			        } 
-			        	  Set<Map.Entry<String, Integer>> set = map.entrySet();
-			              List<Map.Entry<String, Integer>> sortedList = new ArrayList<Map.Entry<String, Integer>>(set);  
-			              Collections.sort( sortedList, new Comparator<Map.Entry<String, Integer>>() 
-			              {
-			                  public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b ) 
-			                  {
-			                      return (b.getValue()).compareTo( a.getValue() );            
-			                  }
-			              } );
-			              for(Map.Entry<String, Integer> i:sortedList){
-			                  words = words + ("\n"+i.getKey()+" --> "+i.getValue());  
-			        }
-				}
-			catch(Exception FileNotFound){
-				System.out.println("File not found");	
-		}	
-	}
-
 		@Override
 		public void handle(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
 		}	
 }
