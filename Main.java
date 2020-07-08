@@ -36,15 +36,24 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * The Raven word count class with JavaFX
+ * 
+ * @author Federico
+ *
+ */
 public class ravenWordCount extends Application implements EventHandler<ActionEvent> {
 	Button button;
 	Label label1 = new Label("The Raven word occurences");
 	Stage window;
 	Scene scene1, scene2;
 	Label label2 = new Label();
-	//static String words;
 
-
+	/**
+	 * The main method
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		launch(args);
@@ -57,27 +66,29 @@ public class ravenWordCount extends Application implements EventHandler<ActionEv
 		primaryStage.setTitle("Word Count for The Raven by Edgar Allan Poe ");
 		button = new Button();
 		button.setText("Analyze");
-		button.setAlignment(Pos.CENTER_RIGHT);;
-        label1.setStyle("-fx-background-color:yellow");
-        label1.setPadding(new Insets(10,10,10,10)); 
-        label1.setAlignment(Pos.CENTER);
+		button.setAlignment(Pos.CENTER_RIGHT);
+		;
+		label1.setStyle("-fx-background-color:yellow");
+		label1.setPadding(new Insets(10, 10, 10, 10));
+		label1.setAlignment(Pos.CENTER);
 		label2.setText(words);
 		button.setOnAction(e -> primaryStage.setScene(scene2));
-		
+
 		VBox layout = new VBox();
 		layout.setPadding(new Insets(10));
 		ScrollPane layout2 = new ScrollPane();
 		layout2.setPannable(true);
 		layout2.setPrefSize(120, 120);
 		layout2.setContent(label2);
-		layout.getChildren().addAll(label1,button);
-		
-		scene1 = new Scene(layout, 425 , 100);
+		layout.getChildren().addAll(label1, button);
+
+		scene1 = new Scene(layout, 425, 100);
 		scene2 = new Scene(layout2, 300, 600);
 		primaryStage.setScene(scene1);
 		primaryStage.show();
 	}
-		@Override
-		public void handle(ActionEvent arg0) {
-		}	
+
+	@Override
+	public void handle(ActionEvent arg0) {
+	}
 }
