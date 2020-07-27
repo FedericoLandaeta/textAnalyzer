@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,10 +57,12 @@ public class ravenWordCount extends Application implements EventHandler<ActionEv
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws Exception {
+		//getConnection();
+		Reader.createTable();
 		launch(args);
 	}
+	
 
 	public void start(Stage primaryStage) throws Exception {
 		Reader reader = new Reader();
@@ -66,23 +71,24 @@ public class ravenWordCount extends Application implements EventHandler<ActionEv
 		primaryStage.setTitle("Word Count for The Raven by Edgar Allan Poe ");
 		button = new Button();
 		button.setText("Analyze");
-		button.setAlignment(Pos.CENTER_RIGHT);
+		button.setAlignment(Pos.CENTER);
 		;
 		label1.setStyle("-fx-background-color:yellow");
-		label1.setPadding(new Insets(10, 10, 10, 10));
+		label1.setPadding(new Insets(20));
 		label1.setAlignment(Pos.CENTER);
 		label2.setText(words);
 		button.setOnAction(e -> primaryStage.setScene(scene2));
 
 		VBox layout = new VBox();
-		layout.setPadding(new Insets(10));
+		layout.setAlignment(Pos.CENTER);
+		layout.setPadding(new Insets(10,125,10,125));
 		ScrollPane layout2 = new ScrollPane();
 		layout2.setPannable(true);
 		layout2.setPrefSize(120, 120);
 		layout2.setContent(label2);
 		layout.getChildren().addAll(label1, button);
 
-		scene1 = new Scene(layout, 425, 100);
+		scene1 = new Scene(layout, 450, 100);
 		scene2 = new Scene(layout2, 300, 600);
 		primaryStage.setScene(scene1);
 		primaryStage.show();
